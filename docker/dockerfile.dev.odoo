@@ -1,0 +1,39 @@
+# Copyright (C) 2025 Joan Pastor
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html).
+
+FROM odoo:18.0
+
+# Work directory
+WORKDIR /opt/odoo
+
+# Set root user
+USER root
+
+# Set environment dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends libmagic1 nodejs libmagic-dev ffmpeg && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+# Update requirements & permissions files
+COPY addons/music_manager/requirements.txt .
+COPY permissions.sh .
+COPY entrypoint.sh /entrypoint.sh
+
+# Normalize line endings (in case the file was edited on Windows) & run permissions file
+RUN sed -i 's/\r$//' permissions.sh && sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh && bash ./permissions.sh
+
+# Install dependencies
+RUN pip install --no-cache-dir --ignore-installed --break-system-packages -r requirements.txt
+
+# Fix permissions for Odoo runtime paths
+# RUN mkdir -p /var/lib/odoo/.local /mnt/extra-addons /home/odoo && chown -R odoo:odoo /var/lib/odoo /mnt/extra-addons /opt/odoo /home/odoo && chmod -R 755 /var/lib/odoo
+
+# Define entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Set odoo user
+USER odoo
+
+# Default command (empty — handled by entrypoint)
+CMD []
