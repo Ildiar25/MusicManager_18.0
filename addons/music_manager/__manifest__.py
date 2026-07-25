@@ -28,12 +28,7 @@
         # "security/ir.model.access.csv",
 
         # Views
-        # "views/music_manager_album_views.xml",
-        # "views/music_manager_artist_views.xml",
-        # "views/music_manager_audio_settings_views.xml",
-        # "views/music_manager_genre_views.xml",
-        # "views/music_manager_music_import_queue_views.xml",
-        # "views/music_manager_track_views.xml",
+        "views/res_config_settings_views.xml",
 
         # Wizards
         # "views/music_manager_change_owner_wizard_views.xml",
