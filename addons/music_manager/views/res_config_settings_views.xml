@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app data-string="Music Manager" string="Music Manager" name="music_manager" groups="base.group_system">
-                    <block title="Module Control Panel 🛠️" name="sync_section">
+                    <block title="🛠️ Control Panel" name="sync_section">
                         <div class="content_group">
                             <div class="mt16">
                                 Manage global media processing preferences. In this section, you can set audio
@@ -15,51 +15,51 @@
                                 <em>Any changes made here will apply to new songs added from now on.</em>
                             </div>
                         </div>
-                        <setting help="Syncronize root folder with database.">
-                            <div class="mt8">
-                                <button name="action_sync_music_library" string="Update Database" class="btn-outline-danger" type="object" icon="fa-refresh"/>
+                        <setting>
+                            <div class="mt16">
+                                <button name="action_sync_music_library" string="Update Database" class="btn-outline-danger" type="object" icon="fa-refresh" help="Syncronize root folder with database."/>
                             </div>
                         </setting>
                     </block>
 
-                    <block title="Audio settings 🎵" name="audio_section">
-                        <div class="text-muted">
+                    <block title="🎵 Audio" name="audio_section">
+                        <div class="mt16 mb16">
                             Set your library quality here. A higher <b>bitrate</b> means better fidelity, but keep in
                             mind that file sizes will be slightly larger.
                         </div>
-                        <setting help="Select download music format.">
+                        <setting>
                             <field name="mm_file_format" string="Sound format"/>
                         </setting>
-                        <setting help="Select download music quality.">
+                        <setting>
                             <field name="mm_audio_quality" string="Quality" widget="radio"/>
                         </setting>
                     </block>
 
-                    <block title="Download settings 📂" name="download_section">
-                        <div class="text-muted">
+                    <block title="📂 Download" name="download_section">
+                        <div class="mt16 mb16">
                             Check your main music directory here. Additionally, you can manage the available <b>
                             adapters</b>: these are the <em>'engines'</em> which get the audio from external sources.
                         </div>
-                        <setting help="Actual main directory.">
+                        <setting>
                             <field name="mm_root_directory" string="Root directory"/>
                         </setting>
-                        <setting help="Select download engine.">
+                        <setting help="Set download engine.">
                             <field name="mm_download_engine" string="Downloaders"/>
                         </setting>
-                        <setting help="Allow to delete files.">
+                        <setting help="Allow automatic file deletion.">
                             <field name="mm_allow_deletes" string="Delete server files"/>
                         </setting>
                     </block>
 
-                    <block title="Image settings 🎨" name="image_section">
-                        <div class="text-muted">
+                    <block title="🎨 Image" name="image_section">
+                        <div class="mt16 mb16">
                             Set the final size and format for your images. They will be automatically
                             <b>center-cropped to a 1:1</b> aspect ratio and resized according to your preferences.
                         </div>
-                        <setting help="Available image formats">
+                        <setting>
                             <field name="mm_image_format" string="Image format"/>
                         </setting>
-                        <setting help="Available image sizes">
+                        <setting>
                             <field name="mm_image_size" string="Image size" widget="radio"/>
                         </setting>
                     </block>
