@@ -6,7 +6,12 @@ from odoo import _
 from odoo.models import TransientModel
 from odoo.fields import Boolean, Char, Selection
 
+from ..services.download_engines import get_engine_settings
+from ..utils.custom_types import DisplayNotification, NotificationType
+
+
 _logger = logging.getLogger(__name__)
+
 
 class ResConfigSettings(TransientModel):
     _inherit = 'res.config.settings'
@@ -22,7 +27,7 @@ class ResConfigSettings(TransientModel):
             ('auto', _("Auto")),
             ('low', _("Low")),
             ('medium', _("Medium")),
-            ('High', _("High")),
+            ('high', _("High")),
         ],
         string=_("Download quality"),
         default='auto',
@@ -87,13 +92,32 @@ class ResConfigSettings(TransientModel):
     )
 
     def action_sync_music_library(self):
+        self.execute()
+
+        get_param = self.env['ir.config_parameter'].sudo().get_param
+
+        root_dir = get_param('music_manager.root_directory')
+        allow_deletes = get_param('music_manager.allow_deletes')
+        engine = get_param('music_manager.download_engine')
+        fmt = get_param('music_manager.file_format')
+        preset = get_param('music_manager.audio_quality')
+
+        settings = get_engine_settings(engine, fmt, preset)
+
+        message = f"My engine: {settings}"
+
+
+        return self._notify_user(message, 'info')
+
+    @staticmethod
+    def _notify_user(message: str, style: NotificationType, sticky: bool = False) -> DisplayNotification:
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
                 'title': _("Music Manager says:"),
-                'message': _("This is your first config!"),
-                'type': 'success',
-                'sticky': False,
+                'message': message,
+                'type': style,
+                'sticky': sticky,
             }
         }
