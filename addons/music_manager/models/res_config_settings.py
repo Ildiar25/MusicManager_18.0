@@ -91,7 +91,13 @@ class ResConfigSettings(TransientModel):
         required=True,
     )
 
+
     def action_sync_music_library(self):
+        pass
+
+
+    # Just for test purpose
+    def action_config_parameters(self) -> DisplayNotification:
         self.execute()
 
         get_param = self.env['ir.config_parameter'].sudo().get_param
@@ -103,11 +109,13 @@ class ResConfigSettings(TransientModel):
         preset = get_param('music_manager.audio_quality')
 
         settings = get_engine_settings(engine, fmt, preset)
+        img_format = get_param('music_manager.image_format')
+        img_size = get_param('music_manager.image_size')
 
-        message = f"My engine: {settings}"
+        message = f"ACTUAL CONFIG: Root dir = '{root_dir}' | Allow Deletes = '{allow_deletes}' | Image Format = '{img_format}' | Image Size = '{img_size}' | MY ENGINE: {settings}"
 
+        return self._notify_user(message, 'info', sticky=True)
 
-        return self._notify_user(message, 'info')
 
     @staticmethod
     def _notify_user(message: str, style: NotificationType, sticky: bool = False) -> DisplayNotification:

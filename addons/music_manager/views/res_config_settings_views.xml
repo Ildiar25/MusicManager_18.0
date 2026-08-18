@@ -63,6 +63,16 @@
                             <field name="mm_image_size" string="Image size" widget="radio"/>
                         </setting>
                     </block>
+                    <block title="🧪 Testing" name="test_section">
+                        <div class="mt16 mb16">
+                            Testing section
+                        </div>
+                        <setting>
+                            <div class="mt16">
+                                <button name="action_config_parameters" string="Test Settings" class="btn-primary" type="object" icon="fa-exclamation-circle" help="Shows setted parameters"/>
+                            </div>
+                        </setting>
+                    </block>
                 </app>
             </xpath>
         </field>
