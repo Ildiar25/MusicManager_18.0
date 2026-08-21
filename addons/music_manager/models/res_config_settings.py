@@ -91,10 +91,8 @@ class ResConfigSettings(TransientModel):
         required=True,
     )
 
-
     def action_sync_music_library(self):
         pass
-
 
     # Just for test purpose
     def action_config_parameters(self) -> DisplayNotification:
@@ -112,10 +110,10 @@ class ResConfigSettings(TransientModel):
         img_format = get_param('music_manager.image_format')
         img_size = get_param('music_manager.image_size')
 
-        message = f"ACTUAL CONFIG: Root dir = '{root_dir}' | Allow Deletes = '{allow_deletes}' | Image Format = '{img_format}' | Image Size = '{img_size}' | MY ENGINE: {settings}"
+        message = (f"ACTUAL CONFIG: Root dir = '{root_dir}' | Allow Deletes = '{allow_deletes}' | Image Format = "
+                   f"'{img_format}' | Image Size = '{img_size}' | MY ENGINE: {settings}")
 
         return self._notify_user(message, 'info', sticky=True)
-
 
     @staticmethod
     def _notify_user(message: str, style: NotificationType, sticky: bool = False) -> DisplayNotification:
