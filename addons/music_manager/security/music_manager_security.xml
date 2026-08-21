@@ -3,11 +3,11 @@
     <data noupdate="0">
         <!-- Music manager category group security -->
         <record id="module_category_music_manager" model="ir.module.category">
-            <field name="name">Music Manager</field>
+            <field name="name">Music Manager Administration</field>
         </record>
 
         <record id="module_subcategory_music_manager" model="ir.module.category">
-            <field name="name">Music Manager Administration</field>
+            <field name="name">User Rights</field>
             <field name="description">Allows user module management</field>
             <field name="parent_id" ref="music_manager.module_category_music_manager"/>
             <field name="sequence">20</field>
