@@ -24,8 +24,8 @@
     },
     'data': [
         # Security
-        # "security/music_manager_groups.xml",
-        # "security/ir.model.access.csv",
+        "security/music_manager_security.xml",
+        "security/ir.model.access.csv",
 
         # Views
         "views/res_config_settings_views.xml",
