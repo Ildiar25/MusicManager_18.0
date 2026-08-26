@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-                <app data-string="Music Manager" string="Music Manager" name="music_manager" groups="base.group_system">
+                <app data-string="Music Manager" string="Music Manager" name="music_manager" groups="music_manager.group_music_manager_user_admin">
                     <block title="🛠️ Control Panel" name="sync_section">
                         <div class="content_group">
                             <div class="mt16">

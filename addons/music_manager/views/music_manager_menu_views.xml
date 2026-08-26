@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main menu -->
+    <menuitem
+        id="music_manager_menu_root"
+        name="Music Manager"
+        web_icon="music manager,static/description/icon.png"
+        groups="base.group_user"
+        sequence="20"
+    />
+
+    <!-- Submenus -->
+    <menuitem
+        id="music_manager_main_menu"
+        name="Music"
+        parent="music_manager_menu_root"
+        sequence="1"
+    />
+    <menuitem
+        id="music_manager_wizard_action"
+        name="Add Track"
+        parent="music_manager_menu_root"
+        action=""
+        sequence="2"
+    />
+    <menuitem
+        id="music_manager_import_queue_action"
+        name="Import Queue"
+        parent="music_manager_menu_root"
+        groups="music_manager.group_music_manager_user_admin"
+        action=""
+        sequence="3"
+    />
+
+    <!-- Menu actions -->
+    <menuitem
+        id="music_manager_main_menu_track_action"
+        name="Tracks"
+        parent="music_manager_main_menu"
+        action="action_music_manager_track"
+        sequence="1"
+    />
+    <menuitem
+        id="music_manager_main_menu_album_action"
+        name="Albums"
+        parent="music_manager_main_menu"
+        action="action_music_manager_album"
+        sequence="2"
+    />
+    <menuitem
+        id="music_manager_main_menu_artist_action"
+        name="Artists"
+        parent="music_manager_main_menu"
+        action=""
+        sequence="3"
+    />
+    <menuitem
+        id="music_manager_main_menu_genre_action"
+        name="Genres"
+        parent="music_manager_main_menu"
+        action=""
+        sequence="4"
+    />
+</odoo>
