@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_music_manager_purchase_order" model="ir.actions.act_window">
+            <field name="name">Purchase Orders</field>
+            <field name="res_model">music_manager.purchase_order</field>
+            <field name="view_mode">list</field>
+            <field name="domain">[('custom_owner_id', '=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No purchase orders found. First add a new song!
+                </p>
+                <p>
+                    Here you find all your purchases.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

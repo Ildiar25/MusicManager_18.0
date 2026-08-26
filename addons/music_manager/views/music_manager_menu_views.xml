@@ -20,7 +20,7 @@
         id="music_manager_wizard_action"
         name="Add Track"
         parent="music_manager_menu_root"
-        action=""
+        action="action_music_manager_track_guide"
         sequence="2"
     />
     <menuitem
@@ -60,5 +60,12 @@
         parent="music_manager_main_menu"
         action=""
         sequence="4"
+    />
+    <menuitem
+        id="music_manager_main_menu_order_purchase_action"
+        name="Purchase Orders"
+        parent="music_manager_main_menu"
+        action="action_music_manager_purchase_order"
+        sequence="5"
     />
 </odoo>
