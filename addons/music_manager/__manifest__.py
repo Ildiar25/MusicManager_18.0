@@ -29,13 +29,15 @@
 
         # Views
         "views/res_config_settings_views.xml",
+        "views/music_manager_album_views.xml",
+        "views/music_manager_track_views.xml",
 
         # Wizards
         # "views/music_manager_change_owner_wizard_views.xml",
         # "views/music_manager_track_wizard_views.xml",
 
         # Menus
-        # "views/music_manager_menus.xml",
+        "views/music_manager_menu_views.xml",
 
         # Triggered actions
         # "data/ir_cron_data.xml",
