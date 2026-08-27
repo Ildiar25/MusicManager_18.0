@@ -51,7 +51,7 @@
         id="music_manager_main_menu_artist_action"
         name="Artists"
         parent="music_manager_main_menu"
-        action=""
+        action="action_music_manager_artist"
         sequence="3"
     />
     <menuitem

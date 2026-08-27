@@ -30,6 +30,7 @@
         # Views
         "views/res_config_settings_views.xml",
         "views/music_manager_album_views.xml",
+        "views/music_manager_artist_views.xml",
         "views/music_manager_track_views.xml",
         "views/music_manager_purchase_order_views.xml",
 

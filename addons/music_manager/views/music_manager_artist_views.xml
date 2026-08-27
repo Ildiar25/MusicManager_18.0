@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_music_manager_artist" model="ir.actions.act_window">
+            <field name="name">Artists</field>
+            <field name="res_model">music_manager.artist</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="domain">[(1, '=', 1)]</field>
+            <!-- <field name="context">{'search_default_my_contributions': 1}</field> -->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No artists found. Let's create a new one!
+                </p>
+                <p>
+                    Here you find all artists added by all users!
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
