@@ -21,9 +21,9 @@ class ProcessImageMixin(AbstractModel):
     _name = 'music_manager.process_image_mixin'
     _description = 'Music Manager Process Image Mixin'
 
-    @api.onchange('picture')
-    def _validate_image_format(self):
-        pass
+    # @api.onchange('picture')
+    # def _validate_image_format(self):
+    #     pass
 
     def _get_image_service_adapter(self):
         get_param = self.env['ir.config_parameter'].sudo().get_param

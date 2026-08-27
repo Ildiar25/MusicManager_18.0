@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 
+from addons.l10n_id_efaktur.controllers import download_efaktur
 # noinspection PyProtectedMember
 from odoo import _, api
 from odoo.models import Model
@@ -14,7 +15,7 @@ class PurchaseOrder(Model):
     _description = 'Purchase Order'
 
     # Basic fields
-    invoice_file = Binary(string=_("Invoice (PDF/JPEG"))
+    invoice_file = Binary(string=_("Invoice (PDF"))
     name = Char(string=_("Description"), compute='_compute_name', store=True)
     order_reference = Char(string=_("Order Number"), required=True)
     store_name = Selection(

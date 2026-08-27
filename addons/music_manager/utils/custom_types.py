@@ -10,6 +10,7 @@ from typing import Dict, List, Literal, TypeAlias
 
 DisplayNotification: TypeAlias = Dict[str, str | Dict[str, str | bool]]
 NotificationType: TypeAlias = Literal['success', 'info', 'warning', 'danger']
+WizardStates: TypeAlias = List[Literal['start', 'uploaded', 'metadata', 'done']]
 
 # -----------------------------------------------------------------------------
 # TECHINCAL TYPES
