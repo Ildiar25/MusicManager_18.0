@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
 
-from addons.l10n_id_efaktur.controllers import download_efaktur
 # noinspection PyProtectedMember
 from odoo import _, api
 from odoo.models import Model
