@@ -1,6 +1,170 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
+        <record id="action_music_manager_track_guide" model="ir.actions.act_window">
+            <field name="name">Track Wizard</field>
+            <field name="res_model">music_manager.track_guide</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'create': True}</field>
+        </record>
 
+        <!-- Track wizard form -->
+        <record id="music_manager_track_guide_form_view" model="ir.ui.view">
+            <field name="name">music_manager.track_guide.form.view</field>
+            <field name="model">music_manager.track_guide</field>
+            <field name="arch" type="xml">
+                <form string="Track Wizard Form View" disable_autofocus="1">
+                    <field name="state" string="" widget="statusbar"/>
+                    <sheet>
+                        <!-- Uploading Section -->
+                        <section invisible="state != 'start'">
+                            <header>
+                                <h1>Welcome! 🚀 </h1>
+                            </header>
+                            <separator/>
+                            <h3 class="text-muted">Ready to upload your next hit? 🎧</h3>
+                            <p>
+                                <em>This is your personal music manager!</em>
+                                <br/>
+                                <br/>
+                                Here you can start building your collection by either uploading an <b>MP3 file</b> from
+                                your computer or adding a <b>YouTube link</b> to download and convert it automatically.
+                                <br/>
+                                Once your song is uploaded, you’ll be able to review and edit its metadata to keep
+                                everything tidy and organized.
+                                <br/>
+                                <br/>
+                                <em>Let’s get started and bring some music to life!</em>
+                            </p>
+                            <group class="d-flex justify-content-evenly">
+                                <div class="d-flex flex-md-column align-items-center">
+                                    <img src="/music_manager/static/src/img/update-img.png" width="180" height="180"
+                                         alt="Cloud image"/>
+                                    <p class="mx-auto"><b>MP3 file</b></p>
+                                    <div class="d-flex justify-content-center text-center w-100">
+                                        <field name="file" string="MP3 file" filename="file_name"/>
+                                        <field name="file_name" invisible="1"/>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-md-column align-items-center">
+                                    <img src="/music_manager/static/src/img/receipt-img.png" width="180" height="180" alt="Receipt image"/>
+                                    <p class="mx-auto"><b>Purchase Order</b></p>
+                                    <field name="purchase_option" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="purchase_order_id" string="" invisible="purchase_option != 'existing'" required="purchase_option == 'existing'" placeholder="Select purchase order"/>
+                                    <group invisible="purchase_option != 'new'">
+                                        <field name="store_name" string="" required="purchase_option == 'new'" placeholder="Store"/>
+                                        <field name="order_reference" string="" required="purchase_option == 'new'" placeholder="Order No"/>
+                                    </group>
+                                </div>
+                                <div class="d-flex flex-md-column align-items-center"
+                                     groups="music_manager.group_music_manager_user_admin">
+                                    <img src="/music_manager/static/src/img/youtube-img.png" width="180" height="180" alt="YouTube image"/>
+                                    <p class="mx-auto"><b>YouTube URL</b></p>
+                                    <div class="d-flex justify-content-center w-100">
+                                        <field name="url" placeholder="https://"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <div class="alert alert-info text-center" role="info" invisible="not file">
+                                <h4>Kindly Reminder! ℹ️</h4>
+                                <p>Keep in mind file will be deleted once you close this wizard if you don't save it
+                                    previously!</p>
+                            </div>
+                        </section>
+
+                        <!-- Metadata Checking -->
+                        <section invisible="state != 'uploaded'">
+                            <header>
+                                <h1>Checking! 👀 </h1>
+                            </header>
+                            <separator/>
+                            <h3 class="text-muted">Here is the metadata founded! 🏷</h3>
+                            <p>
+                                <b>Metadata</b> is the hidden information embedded inside your music files, such as the
+                                title, artist, album, year, genre, and even cover images. These details help music
+                                players and libraries like <b>Navidrome</b> to display and organize your songs properly.
+                                <br/>
+                                <br/>
+                                Here we show you what we found in your file!
+                                <br/>
+                                <br/>
+                                <em>Review it carefully before moving forward!</em>
+                            </p>
+
+                        </section>
+
+                        <!-- Editing Section -->
+                        <section invisible="state != 'metadata'">
+                            <header>
+                                <h1>Editing! 📝 </h1>
+                            </header>
+                            <separator/>
+                            <h3 class="text-muted">Polishing your track details! ✨</h3>
+                            <p>
+                                You can update or correct the metadata before saving your track on your <b>library</b>.
+                                This includes fixing typos, updating the artist name, adding the correct album, or
+                                choosing a better genre.
+                                <br/>
+                                <br/>
+                                Keeping your metadata clean ensures that your music collection stays neat and easy to
+                                browse across all your devices, including <b>Substreamer</b> and <b>Navidrome</b>.
+                                <br/>
+                                <br/>
+                                <em>Let's do it!</em>
+                            </p>
+
+                        </section>
+
+                        <!-- Confirm Section -->
+                        <section invisible="state != 'done'">
+                            <header>
+                                <h1>Confirm! ✅ </h1>
+                            </header>
+                            <separator/>
+                            <h3 class="text-muted">Add the file to Navidrome! 💿</h3>
+                            <p>
+                                When you click on 'Save', the file will be moved to your main music folder used by
+                                <b>Navidrome</b>, and the updated metadata will be saved directly inside the audio file.
+                                <br/>
+                                <br/>
+                                This way, your new track will immediately appear in your <b>Navidrome</b> library,
+                                ready to be streamed on your PC or mobile app. Once saved, you can still update
+                                metadata later from the main form if needed.
+                                <br/>
+                                <br/>
+                                <em>Enjoy it!</em>
+                            </p>
+
+                            <separator/>
+                            <div class="alert alert-danger" invisible="has_valid_path" role="alert">
+                                <h4>My gosh! 🙄</h4>
+                                <p>
+                                    <em>There are some fields you need to check before save file!</em>
+                                    <br/>
+                                    This app needs to have a valid path to add the song into the
+                                    library folder and we both actually know that condition is not
+                                    true. Check <b>artist name</b>, <b>album name</b>,
+                                    <b>track number</b> and <b>track title</b>. All are necessary!
+                                </p>
+                            </div>
+                            <div class="d-flex flex-column align-items-center" invisible="not has_valid_path">
+                                <h4>Nice! Your song is ready to be added onto your library! 😍</h4>
+                                <p><em>Now it's time! Just click the 'Save' button!</em></p>
+                                <button string="Save" type="object" name="action_save_file" invisible="not has_valid_path" data-hotkey="s"/>
+                            </div>
+                        </section>
+
+                        <footer class="d-flex flex-row align-items-center">
+                            <button string="Cancel" class="btn-default" special="cancel" data-hotkey="z"/>
+                            <div class="ms-auto d-flex gap-2">
+                                <button string="Back" type="object" name="action_back" class="btn btn-outline-primary" invisible="state == 'start'" data-hotkey="n"/>
+                                <button string="Next" type="object" name="action_next" default_focus="1" class="btn btn-primary" invisible="state == 'done'" data-hotkey="m"/>
+                            </div>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
     </data>
 </odoo>

@@ -31,10 +31,11 @@
         "views/res_config_settings_views.xml",
         "views/music_manager_album_views.xml",
         "views/music_manager_track_views.xml",
+        "views/music_manager_purchase_order_views.xml",
 
         # Wizards
         # "views/music_manager_change_owner_wizard_views.xml",
-        # "views/music_manager_track_wizard_views.xml",
+        "wizard/music_manager_track_guide_views.xml",
 
         # Menus
         "views/music_manager_menu_views.xml",

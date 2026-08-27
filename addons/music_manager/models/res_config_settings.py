@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class ResConfigSettings(TransientModel):
     _inherit = 'res.config.settings'
-    _description = 'Music Manager module settings'
+    _description = 'Music Manager Module Settings Model'
 
     # Basic fields
     mm_allow_deletes = Boolean(

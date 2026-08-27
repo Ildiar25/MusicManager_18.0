@@ -19,11 +19,11 @@ _logger = logging.getLogger(__name__)
 
 class ProcessImageMixin(AbstractModel):
     _name = 'music_manager.process_image_mixin'
-    _description = 'Music Manager Process Image Mixin'
+    _description = 'Music Manager Process Image Mixin Model'
 
-    @api.onchange('picture')
-    def _validate_image_format(self):
-        pass
+    # @api.onchange('picture')
+    # def _validate_image_format(self):
+    #     pass
 
     def _get_image_service_adapter(self):
         get_param = self.env['ir.config_parameter'].sudo().get_param
