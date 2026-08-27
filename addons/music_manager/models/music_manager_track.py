@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class Track(Model, ProcessImageMixin):
     _name = 'music_manager.track'
-    _description = 'Music Track'
+    _description = 'Music Manager Track Model'
 
     # Relational fields
     purchase_order_id = Many2one(comodel_name='music_manager.purchase_order', string=_("Purchase Order"))

@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class Album(Model, ProcessImageMixin):
     _name = 'music_manager.album'
-    _description = 'Music Album'
+    _description = 'Music Manager Album Model'
 
     # Techincal fields
     custom_owner_ids = Many2many(

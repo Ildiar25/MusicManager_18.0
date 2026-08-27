@@ -19,7 +19,7 @@ _logger = logging.getLogger(__name__)
 
 class ProcessImageMixin(AbstractModel):
     _name = 'music_manager.process_image_mixin'
-    _description = 'Music Manager Process Image Mixin'
+    _description = 'Music Manager Process Image Mixin Model'
 
     # @api.onchange('picture')
     # def _validate_image_format(self):

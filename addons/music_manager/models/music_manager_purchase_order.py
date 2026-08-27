@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 
 class PurchaseOrder(Model):
     _name = 'music_manager.purchase_order'
-    _description = 'Purchase Order'
+    _description = 'Music Manager Purchase Order Model'
 
     # Basic fields
     invoice_file = Binary(string=_("Invoice (PDF"))
