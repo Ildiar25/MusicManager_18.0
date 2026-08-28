@@ -4,8 +4,9 @@
         <record id="action_music_manager_purchase_order" model="ir.actions.act_window">
             <field name="name">Purchase Orders</field>
             <field name="res_model">music_manager.purchase_order</field>
-            <field name="view_mode">list</field>
+            <field name="view_mode">list,form,graph,pivot</field>
             <field name="domain">[('custom_owner_id', '=', uid)]</field>
+            <field name="context">{'search_default_this_year': 1}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     No purchase orders found. First add a new song!
@@ -13,6 +14,114 @@
                 <p>
                     Here you find all your purchases.
                 </p>
+            </field>
+        </record>
+
+        <!-- List view -->
+        <record id="music_manager_purchase_order_view_list" model="ir.ui.view">
+            <field name="name">music_manager.purchase_order.view.list</field>
+            <field name="model">music_manager.purchase_order</field>
+            <field name="arch" type="xml">
+                <list string="Purchase Order List View" create="0">
+                    <field name="name" string="Order No"/>
+                    <field name="store_name" string="Store"/>
+                    <field name="purchase_date" string="Purchase Date"/>
+                    <field name="amount" string="Amount" sum="Total"/>
+                    <field name="currency_id" string="Currency" column_invisible="1"/>
+                    <field name="receipt_filename" column_invisible="1"/>
+                    <field name="receipt_file" string="Receipt" widget="binary" filename="receipt_filename" optional="hide"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Graph view -->
+        <record id="music_manager_purchase_order_view_graph" model="ir.ui.view">
+            <field name="name">music_manager.purchase_order.view.graph</field>
+            <field name="model">music_manager.purchase_order</field>
+            <field name="arch" type="xml">
+                <graph string="Purchase Order Graph View">
+                    <field name="store_name"/>
+                    <field name="purchase_date" interval="month"/>
+                    <field name="amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Pivot view -->
+        <record id="music_manager_purchase_order_view_pivot" model="ir.ui.view">
+            <field name="name">music_manager.purchase_order.view.pivot</field>
+            <field name="model">music_manager.purchase_order</field>
+            <field name="arch" type="xml">
+                <pivot string="Purchase Order Pivot View">
+                    <field name="store_name" type="row"/>
+                    <field name="purchase_date" interval="month" type="col"/>
+                    <field name="amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="music_manager_purchase_order_view_form" model="ir.ui.view">
+            <field name="name">music_manager.purchase_order.view.form</field>
+            <field name="model">music_manager.purchase_order</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Order Form View" create="0">
+                    <field name="currency_id" invisible="1"/>
+                    <sheet class="form-bg-decoration">
+                        <!-- Stat Buttons -->
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_purchased_tracks" type="object" class="oe_stat_button" icon="fa-music">
+                                <field name="track_amount" widget="statinfo" string="Purchased Tracks"/>
+                            </button>
+                        </div>
+
+                        <header>
+                            <h1> 🧾 <field name="display_title" string="" readonly="1"/></h1>
+                        </header>
+                        <separator/>
+                        <group class="flex-row justify-content-start">
+                            <group class="flex-grow-1">
+                                <group string="Purchasing Data">
+                                    <field name="store_name" string="Store"/>
+                                    <field name="order_reference" string="Order No"/>
+                                    <field name="purchase_date" string="Purchase date"/>
+                                    <separator string="Amount"/>
+                                    <field name="amount" string=""/>
+                                </group>
+                                <group string="Notes">
+                                    <field name="notes" string="" placeholder="Add licences, terms of use or aditional details..."/>
+                                </group>
+                            </group>
+                            <group style="border-left: 1px solid #ccc; height: auto; width: 420px">
+                                <separator string="Receipt"/>
+                                <field name="receipt_filename" invisible="1"/>
+                                <field name="receipt_file" string="" widget="pdf_viewer" filename="receipt_filename"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search view -->
+        <record id="music_manager_purchase_order_view_search" model="ir.ui.view">
+            <field name="name">music_manager.purchase_order.view.search</field>
+            <field name="model">music_manager.purchase_order</field>
+            <field name="arch" type="xml">
+                <search string="Purchase Order Search View">
+                    <!-- Custom fields -->
+                    <field name="store_name" string="by store"/>
+                    <field name="order_reference" string="by order reference"/>
+
+                    <!-- Custom filters -->
+                    <filter name="this_year" string="This year" domain="[('purchase_date', '>=', context_today().strftime('%Y-01-01'))]"/>
+
+                    <!-- Custom groups -->
+                    <group string="Group by" expand="1">
+                        <filter name="store_name" string="Store" context="{'group_by': 'store_name'}"/>
+                        <filter name="purchase_date" string="Purchase Month" context="{'group_by': 'purchase_date:month'}"/>
+                    </group>
+                </search>
             </field>
         </record>
     </data>
